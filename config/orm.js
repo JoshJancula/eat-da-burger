@@ -3,7 +3,7 @@ var connection = require("../config/connection.js");
 
 
 function printQuestionMarks(num) {
-  var arr = [];gd
+  var arr = [];
 
   for (var i = 0; i < num; i++) {
     arr.push("?");

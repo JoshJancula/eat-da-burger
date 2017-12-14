@@ -5,29 +5,29 @@ $(function() {
     var newState = $(this).data("newstate");
 
     var newBurgerState = {
-      devoured: newState
+      devoured: !newState
     };
-
+alert("id= " + id + " newState: " + newState);
     // Send the PUT request.
     $.ajax("/api/burgers/" + id, {
       type: "PUT",
       data: newBurgerState
     }).then(
-      function() {
+      function() { // we have eaten the burger
         console.log("burger has been devoured", newState);
         // Reload the page to get the updated list
         location.reload();
       }
     );
   });
-
+  // when you submit a new burger
   $(".create-form").on("submit", function(event) {
+   
     // Make sure to preventDefault on a submit event.
     event.preventDefault();
-
+    // new burger
     var newBurger = {
-      burger: $("#ca").val().trim(),
-      devroured: $("[burger-devoured]:checked").val().trim()
+      burger: $("#ca").val().trim(), // it has not been eaten yet
     };
 
     // Send the POST request.
@@ -35,7 +35,7 @@ $(function() {
       type: "POST",
       data: newBurger
     }).then(
-      function() {
+      function() { // tell me it worked
         console.log("created a new burger");
         // Reload the page to get the updated list
         location.reload();
