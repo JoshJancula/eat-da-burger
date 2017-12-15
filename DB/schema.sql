@@ -1,9 +1,8 @@
 
-DROP DATABASE IF EXISTS eat_burger_db;
 
 -- Create the database 
-CREATE DATABASE eat_burger_db;
-USE eat_burger_db;
+
+USE dwuqqwyxi8vt31id;
 
 -- Create table for burgers.
 CREATE TABLE burgers
