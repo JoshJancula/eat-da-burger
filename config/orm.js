@@ -36,54 +36,54 @@ function objToSql(ob) {
 
 // Object for all our SQL statement functions.
 var orm = {
-  all: function(tableInput, cb) {
+  all: function(tableInput, cb) { // select from the tableInput
     var queryString = "SELECT * FROM " + tableInput + ";";
     connection.query(queryString, function(err, result) {
-      if (err) {
+      if (err) { // throw error if it happens
         throw err;
-      }
+      } // otherwise render the results 
       cb(result);
     });
-  },
+  }, // create a new burger
   create: function(table, cols, vals, cb) {
     var queryString = "INSERT INTO " + table;
-
+  // get all the user input and convert to string and replace characters
     queryString += " (";
     queryString += cols.toString();
     queryString += ") ";
     queryString += "VALUES (";
     queryString += printQuestionMarks(vals.length);
     queryString += ") ";
-
+    // make sure it comes out right
     console.log(queryString);
-
+    // create a connection with the queryString we just created
     connection.query(queryString, vals, function(err, result) {
-      if (err) {
+      if (err) { // if error throw it
         throw err;
       }
-
+      // else, give me some results
       cb(result);
     });
   },
-  // An example of objColVals would be {name: panther, sleepy: true}
+  // update whether the burger has been devoured 
   update: function(table, objColVals, condition, cb) {
     var queryString = "UPDATE " + table;
-
+    // get our info
     queryString += " SET ";
     queryString += objToSql(objColVals);
     queryString += " WHERE ";
     queryString += condition;
-
-    console.log(queryString);
+    // show me it came out right
+    console.log(queryString); // establish connection
     connection.query(queryString, function(err, result) {
-      if (err) {
+      if (err) { // if error tell me
         throw err;
       }
-
+      // give me results
       cb(result);
     });
   }
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model (burger.js).
 module.exports = orm;

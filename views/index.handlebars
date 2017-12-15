@@ -1,53 +1,63 @@
+<div class="row" id="head">
+</div>
 
 
-<h1>Burgers!</h1>
 <div class="row">
   
-<div class="col-sm-3">
+<div class="col-sm-3" id="toEat">
 <h2>Burgers to be Eaten!</h2>
+
+{{!--each burger that hasn't been devoured --}}
 <ul>
   {{#each burgers}}
     {{#unless devoured}}
-   
-      {{> burgers/burger-block devoured=false}}
+    
+    <li>
+	{{burger}}
+{{!--get burger name and create a button to eat it--}}
+	<button class="change-devoured" type="submit" data-id="{{id}}" data-newstate="{{devoured}}">Eat Me!
+	</button>
+</li>
     
     {{/unless}}
   {{/each}}
 </ul>
 </div>
 
-<div class="col-sm-3>">
-<h2>Burgers that have been Devoured!</h2>
-
-<ul>
-  {{#each burgers}}
-    {{#if devoured}}
- 
-  
-      {{> burgers/burger-block devoured=true}}
-    
-    {{/if}}
-  {{/each}}
-</ul>
-</div>
-
-
-<div class="col-sm-3">
+{{!--create a new burger--}}
+<div class="col-sm-3" id="createBurger">
+  <img id="burgerImage" src="http://fabrik.la/wp-content/uploads/2013/12/Cheeseburger.jpg">
 <h2>Add a Tastey Burger</h2>
 <form class="create-form">
-
   <div class="form-group">
     <label for="ca">Burger:</label>
     <input type="text" id="ca" name="name">
   </div>
-
-
-  {{!--<div class="form-group">--}}
-  {{!--  <label for="state">State?</label><br>--}}
-  {{!--  <input type="radio" name="state" value="1" checked> Edible<br>--}}
-  {{!--  <input type="radio" name="state" value="0"> Devoured--}}
-  {{!--</div>--}}
   <button type="submit">Add Burger</button>
 </form>
+</div>
+
+
+
+
+<div class="col-sm-1">
+</div>
+
+
+{{!--the burgers we've eaten--}}
+<div class="col-sm-3" id="wasTastey">
+<h2>Burgers that have been Devoured!</h2>
+
+<ul>
+  {{#for each}}
+    {{#if devoured}}
+    <li>
+      That 
+   	{{burger}}
+   	 was Tastey!
+</li>
+    {{/if}}
+  {{/each}}
+</ul>
 </div>
 </div>
